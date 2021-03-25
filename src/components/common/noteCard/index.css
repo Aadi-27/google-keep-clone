@@ -1,0 +1,22 @@
+.note-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 220px;
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 1rem;
+}
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.note-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}

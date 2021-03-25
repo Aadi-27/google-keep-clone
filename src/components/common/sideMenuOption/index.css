@@ -1,0 +1,26 @@
+.side-menu {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  margin: 0 6px;
+  padding: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.side-menu-icon-wrapper {
+  width: 48px;
+  border-radius: 50%;
+  margin: 0 18px 0 0;
+  height: 48px;
+  padding: 12px;
+}
+.side-menu-icon-wrapper:hover {
+  background-color: rgba(60, 64, 67, 0.08);
+  outline: none;
+}
+.side-menu-icon {
+  width: 100%;
+}
+.side-menu-title {
+  margin-bottom: 3px;
+}

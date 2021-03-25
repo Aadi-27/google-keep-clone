@@ -1,0 +1,7 @@
+.notes-layout-wrapper {
+  margin-top: 65px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
