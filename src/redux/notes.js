@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const notesSlice = createSlice({
-  name: "notes",
+  name: "notesArray",
   initialState: {
     notesArray: [],
   },
@@ -49,6 +49,6 @@ export const {
   pinNotes,
 } = notesSlice.actions;
 
-export const notesArray = (state) => state.notes.notesArray;
+export const notesArray = (state) => state.notesArray.notesArray;
 
 export default notesSlice.reducer;

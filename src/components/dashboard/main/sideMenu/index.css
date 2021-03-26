@@ -38,11 +38,14 @@
   }
 } */
 .side-menu-wrapper {
+  position: relative;
   margin-top: 65px;
+  min-width: 220px;
   width: 220px;
-  height: calc(100vh - 65px);
+  height: 100vh;
 }
 .side-menu-options {
-  max-width: 100%;
   position: fixed;
+  width: inherit;
+  height: inherit;
 }

@@ -7,7 +7,7 @@
   padding: 12px 16px;
   font-size: 1rem;
 }
-.note-card-header {
+.note-card-Header {
   display: flex;
   justify-content: space-between;
   align-items: center;
