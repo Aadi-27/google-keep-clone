@@ -4,7 +4,7 @@ import NotesLayout from "./notesLayout";
 
 const Main = () => {
   return (
-    <div className="main-wrapper">
+    <div className="Main-wrapper">
       <SideMenu />
       <NotesLayout />
     </div>

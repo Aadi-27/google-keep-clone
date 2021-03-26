@@ -1,13 +1,13 @@
 import React from "react";
 import "./index.css";
-import ActiveMenuTitle from "./activeMenuTitle/";
+import ActiveMenuTitle from "./activeMenuTitle";
 import GlobalSearch from "./globalSearch";
 import HamburgerMenu from "./hamburgerMenu";
 import ToggleTheme from "./toggleTheme";
 
 const Header = () => {
   return (
-    <header>
+    <Header>
       <div className="header-wrapper">
         <HamburgerMenu />
         <ActiveMenuTitle />
@@ -15,7 +15,7 @@ const Header = () => {
         <ToggleTheme />
       </div>
       <hr className="seperator-hr" />
-    </header>
+    </Header>
   );
 };
 

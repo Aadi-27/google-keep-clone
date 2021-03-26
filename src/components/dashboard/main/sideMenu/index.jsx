@@ -1,8 +1,8 @@
 import React from "react";
 import "./index.css";
-import SideMenuOption from "../../../Common/sideMenuOption";
-import NotesIcon from "../../../../Assets/lightbulb-icon.svg";
-import ArchiveIcon from "../../../../Assets/archive-fill-icon.svg";
+import SideMenuOption from "../../../common/sideMenuOption";
+import NotesIcon from "../../../../assets/lightbulb-icon.svg";
+import ArchiveIcon from "../../../../assets/archive-fill-icon.svg";
 
 const SideMenu = () => {
   const NOTES = "Notes";
