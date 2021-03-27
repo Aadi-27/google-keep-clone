@@ -20,20 +20,22 @@ export const notesSlice = createSlice({
       });
     },
     deleteNotes: (state, action) => {
-      state.notesArray.filter((note) => note.id !== action.payload.id);
+      state.notesArray = state.notesArray.filter(
+        (note) => note.id !== action.payload
+      );
     },
     archiveNotes: (state, action) => {
       state.notesArray.map((note) => {
-        if (note.id === action.payload.id) {
-          return (note.isArchived = action.payload);
+        if (note.id === action.payload) {
+          return (note.isArchived = !note.isArchived);
         }
         return note;
       });
     },
     pinNotes: (state, action) => {
       state.notesArray.map((note) => {
-        if (note.id === action.payload.id) {
-          return (note.isPinned = action.payload);
+        if (note.id === action.payload) {
+          return (note.isPinned = !note.isPinned);
         }
         return note;
       });

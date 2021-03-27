@@ -1,10 +1,9 @@
-import React from "react";
 import SideMenu from "./sideMenu";
 import NotesLayout from "./notesLayout";
 
 const Main = () => {
   return (
-    <div className="Main-wrapper">
+    <div className="main-wrapper">
       <SideMenu />
       <NotesLayout />
     </div>

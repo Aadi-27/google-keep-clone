@@ -9,10 +9,13 @@ export const globalSearchSlice = createSlice({
     editValue: (state, action) => {
       state.inputValue = action.payload;
     },
+    emptyValue: (state) => {
+      state.inputValue = "";
+    },
   },
 });
 
-export const { editValue } = globalSearchSlice.actions;
+export const { editValue, emptyValue } = globalSearchSlice.actions;
 
 export const searchValue = (state) => state.globalSearch.inputValue;
 

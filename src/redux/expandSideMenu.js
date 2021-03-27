@@ -6,8 +6,8 @@ export const expandSideMenuSlice = createSlice({
     isExpanded: false,
   },
   reducers: {
-    toggleSideMenu: (state, action) => {
-      state.isExpanded = action.payload;
+    toggleSideMenu: (state) => {
+      state.isExpanded = !state.isExpanded;
     },
   },
 });

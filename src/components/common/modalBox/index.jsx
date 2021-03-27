@@ -11,7 +11,7 @@ const ModalBox = ({ title, desc, isArchived, isPinned, onClose }) => {
   };
   const handleClick = (e) => {
     if (e.target.className === "modal-container") {
-      onClose();
+      onClose(e);
     }
   };
   return ReactDOM.createPortal(

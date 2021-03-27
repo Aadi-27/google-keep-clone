@@ -5,3 +5,22 @@
   align-items: center;
   width: 100%;
 }
+.notes-container {
+  width: 100%;
+}
+.note-cards-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  width: 100%;
+}
+.pinned-notes-wrapper,
+.other-notes-wrapper {
+  padding-top: 60px;
+}
+.pinned-text,
+.others-text {
+  font-size: 0.8rem;
+  margin-left: 4px;
+}

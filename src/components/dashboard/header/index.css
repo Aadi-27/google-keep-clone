@@ -1,11 +1,19 @@
 .header-wrapper {
   position: fixed;
   top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  z-index: 999;
   height: 65px;
   width: 100%;
+}
+.header-items-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr 11fr 2fr;
+  align-items: center;
+  height: 100%;
+}
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 .global-search-wrapper {
   display: flex;

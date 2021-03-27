@@ -7,15 +7,15 @@ import ToggleTheme from "./toggleTheme";
 
 const Header = () => {
   return (
-    <Header>
-      <div className="header-wrapper">
+    <header className="header-wrapper">
+      <div className="header-items-wrapper">
         <HamburgerMenu />
         <ActiveMenuTitle />
         <GlobalSearch />
         <ToggleTheme />
       </div>
       <hr className="seperator-hr" />
-    </Header>
+    </header>
   );
 };
 

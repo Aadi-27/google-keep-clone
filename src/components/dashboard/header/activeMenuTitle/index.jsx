@@ -1,7 +1,9 @@
-import React from "react";
+import { useSelector } from "react-redux";
+import { selectedMenu } from "../../../../redux/sideMenu";
 
 const ActiveMenuTitle = () => {
-  return <div>Keep</div>;
+  const title = useSelector(selectedMenu);
+  return <span className="header-title">{title}</span>;
 };
 
 export default ActiveMenuTitle;

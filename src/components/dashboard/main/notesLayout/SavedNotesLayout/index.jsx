@@ -1,5 +1,4 @@
 import React from "react";
-import "./index.css";
 import { notesArray } from "../../../../../redux/notes";
 import { useSelector } from "react-redux";
 import NoteCard from "../../../../common/noteCard";
@@ -7,16 +6,21 @@ import NoteCard from "../../../../common/noteCard";
 const DisplayNotes = () => {
   const allNotes = useSelector(notesArray);
   const pinnedNotes = allNotes.filter((note) => note.isPinned);
+  const otherNotes = allNotes.filter(
+    (note) => !note.isPinned && !note.isArchived
+  );
+
   return (
     <div className="notes-container">
       {!!pinnedNotes.length && (
-        <>
-          <h3>Pinned</h3>
+        <div className="pinned-notes-wrapper">
+          <p className="pinned-text">PINNED</p>
           <div className="note-cards-wrapper">
-            {pinnedNotes.map((note, index) => {
+            {pinnedNotes.map((note) => {
               return (
                 <NoteCard
-                  key={index}
+                  key={note.id}
+                  id={note.id}
                   title={note.title}
                   desc={note.desc}
                   isArchived={note.isArchived}
@@ -25,21 +29,26 @@ const DisplayNotes = () => {
               );
             })}
           </div>
-        </>
+        </div>
       )}
-      {!!pinnedNotes.length && <h3>Others</h3>}
-      <div className="note-cards-wrapper">
-        {allNotes.map((note, index) => {
-          return (
-            <NoteCard
-              key={index}
-              title={note.title}
-              desc={note.desc}
-              isArchived={note.isArchived}
-              isPinned={note.isPinned}
-            />
-          );
-        })}
+      <div className="other-notes-wrapper">
+        {!!otherNotes.length && !!pinnedNotes.length && (
+          <p className="others-text">OTHERS</p>
+        )}
+        <div className="note-cards-wrapper">
+          {otherNotes.map((note) => {
+            return (
+              <NoteCard
+                key={note.id}
+                id={note.id}
+                title={note.title}
+                desc={note.desc}
+                isArchived={note.isArchived}
+                isPinned={note.isPinned}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

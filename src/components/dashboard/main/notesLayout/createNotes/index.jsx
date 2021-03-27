@@ -5,6 +5,7 @@ import { addNotes } from "../../../../../redux/notes";
 
 const CreateNotes = () => {
   const obj = {
+    id: 0,
     title: "",
     desc: "",
     isArchived: false,
@@ -27,7 +28,8 @@ const CreateNotes = () => {
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNotes(note));
+    const noteObj = { ...note, id: Date.now() };
+    dispatch(addNotes(noteObj));
     setNote(obj);
   };
 
@@ -47,19 +49,17 @@ const CreateNotes = () => {
             value={note.title}
           />
         ) : null}
-        <p>
-          <textarea
-            placeholder="Type a text..."
-            className="create-note-desc"
-            onClick={handleExpandInput}
-            rows={isExpanded ? 6 : 1}
-            onChange={handleTextAreaChange}
-            name="description"
-            value={note.desc}
-          >
-            {""}
-          </textarea>
-        </p>
+        <textarea
+          placeholder="Type a text..."
+          className="create-note-desc"
+          onClick={handleExpandInput}
+          rows={isExpanded ? 6 : 1}
+          onChange={handleTextAreaChange}
+          name="description"
+          value={note.desc}
+        >
+          {""}
+        </textarea>
         <button onClick={handleOnSubmit}>Add</button>
       </form>
     </div>
