@@ -26,7 +26,12 @@ export const notesSlice = createSlice({
     },
     archiveNotes: (state, action) => {
       state.notesArray.map((note) => {
-        if (note.id === action.payload) {
+        if (note.id === action.payload && note.isPinned) {
+          return (
+            (note.isArchived = !note.isArchived),
+            (note.isPinned = !note.isPinned)
+          );
+        } else if (note.id === action.payload) {
           return (note.isArchived = !note.isArchived);
         }
         return note;
@@ -34,7 +39,12 @@ export const notesSlice = createSlice({
     },
     pinNotes: (state, action) => {
       state.notesArray.map((note) => {
-        if (note.id === action.payload) {
+        if (note.id === action.payload && note.isArchived) {
+          return (
+            (note.isPinned = !note.isPinned),
+            (note.isArchived = !note.isArchived)
+          );
+        } else if (note.id === action.payload) {
           return (note.isPinned = !note.isPinned);
         }
         return note;

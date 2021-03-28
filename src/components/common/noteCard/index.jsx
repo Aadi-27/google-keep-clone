@@ -62,7 +62,7 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
             <img
               className="unarchive-note-icon"
               src={UnArchiveIcon}
-              alt="archive-note"
+              alt="unarchive-note"
             />
           ) : (
             <img
@@ -86,10 +86,7 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
       </div>
       {isModalOpen && (
         <Modal
-          title={title}
-          desc={desc}
-          isArchived={isArchived}
-          isPinned={isPinned}
+          noteObject={{ id, title, desc, isArchived, isPinned }}
           onClose={handleToggleModal}
         />
       )}

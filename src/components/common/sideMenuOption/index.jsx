@@ -1,14 +1,12 @@
 import React from "react";
 import "./index.css";
-import { selectedMenu, toggleSelectedMenu } from "../../../redux/sideMenu";
-import { useSelector, useDispatch } from "react-redux";
+import { toggleSelectedMenu } from "../../../redux/sideMenu";
+import { useDispatch } from "react-redux";
 
 const SideMenuOption = ({ title, icon }) => {
   const dispatch = useDispatch();
-  const data = useSelector(selectedMenu);
   const toggleMenu = () => {
     dispatch(toggleSelectedMenu(title));
-    console.log(data);
   };
   return (
     <li className="side-menu" onClick={toggleMenu}>

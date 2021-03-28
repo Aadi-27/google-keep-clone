@@ -1,36 +1,60 @@
-import React, { useState } from "react";
-import "./index.css";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import PinIcon from "../../../../../assets/pin-outline.svg";
+import UnPinIcon from "../../../../../assets/pin-fill.svg";
+import ArchiveIcon from "../../../../../assets/archive-outline-icon.svg";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  noteObj,
+  editTitle,
+  editDesc,
+  toggleIsArchived,
+  toggleIsPinned,
+  emptyNote,
+} from "../../../../../redux/noteObject";
 import { addNotes } from "../../../../../redux/notes";
 
 const CreateNotes = () => {
-  const obj = {
-    id: 0,
-    title: "",
-    desc: "",
-    isArchived: false,
-    isPinned: false,
-  };
   const [isExpanded, setIsExpanded] = useState(false);
-  const [note, setNote] = useState(obj);
   const dispatch = useDispatch();
+  const note = useSelector(noteObj);
+
+  useEffect(() => {
+    if (note.isArchived) {
+      const newNote = { ...note, id: Date.now(), isArchived: true };
+      dispatch(addNotes(newNote));
+      dispatch(emptyNote());
+      setIsExpanded(false);
+    }
+  }, [note, dispatch]);
 
   const handleExpandInput = () => {
     setIsExpanded(true);
   };
+
   const handleInputChange = (e) => {
     e.preventDefault();
-    setNote({ ...note, title: e.target.value });
+    dispatch(editTitle(e.target.value));
   };
   const handleTextAreaChange = (e) => {
     e.preventDefault();
-    setNote({ ...note, desc: e.target.value });
+    dispatch(editDesc(e.target.value));
   };
+
+  const handlePinNote = () => {
+    dispatch(toggleIsPinned());
+  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const noteObj = { ...note, id: Date.now() };
-    dispatch(addNotes(noteObj));
-    setNote(obj);
+
+    const newNote = { ...note, id: Date.now() };
+    dispatch(addNotes(newNote));
+    dispatch(emptyNote());
+    setIsExpanded(false);
+  };
+
+  const handleArchiveNote = (e) => {
+    dispatch(toggleIsArchived(true));
   };
 
   return (
@@ -41,26 +65,54 @@ const CreateNotes = () => {
         }`}
       >
         {isExpanded ? (
-          <input
-            placeholder="Title"
-            className="create-note-input"
-            onChange={handleInputChange}
-            name="title"
-            value={note.title}
-          />
+          <div className="create-note-header">
+            <input
+              placeholder="Title"
+              className="create-note-input"
+              onChange={handleInputChange}
+              name="title"
+              value={note.title}
+              autoComplete="off"
+            />
+            <div className="pin-icon-wrapper" onClick={handlePinNote}>
+              {note.isPinned ? (
+                <img className="pin-icon" src={UnPinIcon} alt="unpin-note" />
+              ) : (
+                <img className="pin-icon" src={PinIcon} alt="pin-note" />
+              )}
+            </div>
+          </div>
         ) : null}
         <textarea
           placeholder="Type a text..."
           className="create-note-desc"
-          onClick={handleExpandInput}
           rows={isExpanded ? 6 : 1}
           onChange={handleTextAreaChange}
+          onFocus={handleExpandInput}
           name="description"
           value={note.desc}
+          autoComplete="off"
         >
           {""}
         </textarea>
-        <button onClick={handleOnSubmit}>Add</button>
+        {isExpanded && (
+          <>
+            <div className="archive-icon-wrapper" onClick={handleArchiveNote}>
+              <img
+                className="archive-icon"
+                src={ArchiveIcon}
+                alt="archive-note"
+              />
+            </div>
+            <div
+              className="create-note-submit-btn"
+              role="button"
+              onClick={handleOnSubmit}
+            >
+              Close
+            </div>
+          </>
+        )}
       </form>
     </div>
   );

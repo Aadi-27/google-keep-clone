@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialObject = {
+  id: 0,
   title: "",
   desc: "",
   isArchived: false,
@@ -13,32 +14,36 @@ export const noteObjectSlice = createSlice({
     noteObject: initialObject,
   },
   reducers: {
-    emptyObject: (state) => {
+    emptyNote: (state) => {
       state.noteObject = initialObject;
     },
+    editNote: (state, action) => {
+      state.noteObject = action.payload;
+    },
     editTitle: (state, action) => {
-      return { ...state.noteObject, title: action.payload };
+      state.noteObject.title = action.payload;
     },
     editDesc: (state, action) => {
-      return { ...state.noteObject, desc: action.payload };
+      state.noteObject.desc = action.payload;
     },
     toggleIsArchived: (state, action) => {
-      return { ...state.noteObject, isArchived: action.payload };
+      state.noteObject.isArchived = action.payload;
     },
-    toggleIsPinned: (state, action) => {
-      return { ...state.noteObject, isPinned: action.payload };
+    toggleIsPinned: (state) => {
+      state.noteObject.isPinned = !state.noteObject.isPinned;
     },
   },
 });
 
 export const {
-  emptyObject,
+  emptyNote,
+  editNote,
   editTitle,
   editDesc,
   toggleIsArchived,
   toggleIsPinned,
 } = noteObjectSlice.actions;
 
-export const noteee = (state) => state.note.noteObject;
+export const noteObj = (state) => state.noteObject.noteObject;
 
 export default noteObjectSlice.reducer;

@@ -1,7 +1,9 @@
 import NoteCard from "../../../../common/noteCard";
 
 const ArchivedNotesLayout = ({ allNotes }) => {
-  const archivedNotes = allNotes.filter((note) => note.isArchived);
+  const archivedNotes = allNotes.filter(
+    (note) => note.isArchived && !note.isPinned
+  );
   return (
     <div className="notes-container">
       <div className="note-cards-wrapper">
