@@ -4,17 +4,29 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(32, 33, 36, 0.6);
+  background-color: rgba(32, 33, 36, 0.2);
   transition: opacity 0.218s ease-in;
 }
 .modal-box-wrapper {
   background-color: transparent;
+  position: relative;
+}
+.modal-note-desc {
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1rem;
+  margin-bottom: 52px;
+  background: transparent;
+  color: inherit;
 }
 .edit-note-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

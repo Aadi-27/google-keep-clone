@@ -1,12 +1,21 @@
-/* ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-width: 260px;
-  font-weight: 600;
-  font-size: 18px;
+.side-menu-wrapper {
+  z-index: 999;
+  background: white;
+  position: fixed;
+  height: 100vh;
 }
-
+.contracted-menu {
+  min-width: 78px;
+  width: 78px;
+}
+.side-menu-options {
+  position: fixed;
+  width: inherit;
+  height: inherit;
+  padding-top: 12px;
+  border: 1px solid #dadada;
+  border-left: none;
+}
 .slideOut {
   animation: slideOut 0.4s ease-in-out forwards;
 }
@@ -15,38 +24,25 @@
 }
 @keyframes slideOut {
   0% {
-    display: block;
-    opacity: 1;
-    left: 0;
+    min-width: 220px;
+    width: 220px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
+      0 1px 3px 1px rgb(60 64 67 / 15%);
   }
   100% {
-    display: none;
-    opacity: 0;
-    left: 100%;
+    min-width: 78px;
+    width: 78px;
   }
 }
 @keyframes slideIn {
   0% {
-    display: none;
-    opacity: 0;
-    left: 100%;
+    min-width: 78px;
+    width: 78px;
   }
   100% {
-    display: block;
-    opacity: 1;
-    left: 0;
+    min-width: 220px;
+    width: 220px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
+      0 1px 3px 1px rgb(60 64 67 / 15%);
   }
-} */
-.side-menu-wrapper {
-  position: relative;
-  margin-top: 65px;
-  min-width: 220px;
-  width: 220px;
-  height: 100vh;
-}
-.side-menu-options {
-  position: fixed;
-  width: inherit;
-  height: inherit;
-  margin-top: 12px;
 }

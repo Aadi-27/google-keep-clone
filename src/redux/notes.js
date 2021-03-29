@@ -12,12 +12,10 @@ export const notesSlice = createSlice({
       }
     },
     editNotes: (state, action) => {
-      state.notesArray.map((note) => {
-        if (note.id === action.payload.id) {
-          return action.payload;
-        }
-        return note;
-      });
+      const index = state.notesArray.indexOf(
+        (note) => note.id === action.payload.id
+      );
+      state.notesArray.splice(index, 1, action.payload);
     },
     deleteNotes: (state, action) => {
       state.notesArray = state.notesArray.filter(

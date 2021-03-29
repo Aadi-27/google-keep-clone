@@ -1,24 +1,28 @@
-.side-menu {
+.side-menu,
+.side-menu-expanded {
   display: flex;
   align-items: center;
   padding: 0 18px;
   overflow: hidden;
   cursor: pointer;
 }
-/* menu-active {
-  background-color: rgba(60, 64, 67, 0.08);
+.side-menu-expanded:hover {
   border-radius: 0 42px 42px 0;
-} */
+  background-color: rgba(95, 99, 104, 0.157);
+  outline: none;
+}
 .side-menu-icon-wrapper {
   min-width: 48px;
   width: 48px;
-  border-radius: 50%;
   margin: 0 18px 0 0;
   height: 48px;
   padding: 12px;
 }
-.side-menu-icon-wrapper:hover {
-  background-color: rgba(60, 64, 67, 0.08);
+.side-menu-contracted {
+  border-radius: 50%;
+}
+.side-menu-contracted:hover {
+  background-color: rgba(95, 99, 104, 0.157);
   outline: none;
 }
 .side-menu-icon {

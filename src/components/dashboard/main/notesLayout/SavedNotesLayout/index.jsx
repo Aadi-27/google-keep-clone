@@ -11,7 +11,7 @@ const DisplayNotes = () => {
   );
 
   return (
-    <div className="notes-container">
+    <div className="saved-notes-container">
       {!!pinnedNotes.length && (
         <div className="pinned-notes-wrapper">
           <p className="pinned-text">PINNED</p>

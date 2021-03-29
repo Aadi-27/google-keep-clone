@@ -26,8 +26,8 @@ export const noteObjectSlice = createSlice({
     editDesc: (state, action) => {
       state.noteObject.desc = action.payload;
     },
-    toggleIsArchived: (state, action) => {
-      state.noteObject.isArchived = action.payload;
+    toggleIsArchived: (state) => {
+      state.noteObject.isArchived = !state.noteObject.isArchived;
     },
     toggleIsPinned: (state) => {
       state.noteObject.isPinned = !state.noteObject.isPinned;

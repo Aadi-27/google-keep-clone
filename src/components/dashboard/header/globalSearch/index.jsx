@@ -49,6 +49,7 @@ const GlobalSearch = () => {
       <div className="global-search-input-wrapper">
         <input
           className="global-search-input"
+          id="global-search"
           aria-label="Search"
           placeholder="Search"
           ref={searchInput}

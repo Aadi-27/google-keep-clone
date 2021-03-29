@@ -1,0 +1,4 @@
+.main-wrapper {
+  min-height: calc(100vh - 65px);
+  height: 100%;
+}

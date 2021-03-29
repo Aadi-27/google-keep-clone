@@ -11,21 +11,25 @@ import {
   toggleIsPinned,
   emptyNote,
 } from "../../../../../redux/noteObject";
+import { modalIsOpen } from "../../../../../redux/toggleModal";
 import { addNotes } from "../../../../../redux/notes";
+import { isDarkModeOn } from "../../../../../redux/toggleTheme";
 
 const CreateNotes = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const dispatch = useDispatch();
   const note = useSelector(noteObj);
+  const isModalOpen = useSelector(modalIsOpen);
+  const isDarkMode = useSelector(isDarkModeOn);
 
   useEffect(() => {
-    if (note.isArchived) {
+    if (note.isArchived && !isModalOpen) {
       const newNote = { ...note, id: Date.now(), isArchived: true };
       dispatch(addNotes(newNote));
       dispatch(emptyNote());
       setIsExpanded(false);
     }
-  }, [note, dispatch]);
+  }, [note, dispatch, isModalOpen]);
 
   const handleExpandInput = () => {
     setIsExpanded(true);
@@ -54,15 +58,18 @@ const CreateNotes = () => {
   };
 
   const handleArchiveNote = (e) => {
-    dispatch(toggleIsArchived(true));
+    dispatch(toggleIsArchived());
   };
 
   return (
     <div className="create-note-wrapper">
       <form
         className={`create-note-input-wrapper default-input-styles ${
-          isExpanded ? "expand-input" : ""
-        }`}
+          isDarkMode
+            ? "dark-mode dark-mode-border dark-mode-font dark-mode-shadow"
+            : ""
+        } ${isExpanded ? "expand-input" : ""}`}
+        onSubmit={handleOnSubmit}
       >
         {isExpanded ? (
           <div className="create-note-header">
@@ -90,7 +97,7 @@ const CreateNotes = () => {
           onChange={handleTextAreaChange}
           onFocus={handleExpandInput}
           name="description"
-          value={note.desc}
+          value={isExpanded ? note.desc : ""}
           autoComplete="off"
         >
           {""}
