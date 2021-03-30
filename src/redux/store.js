@@ -6,6 +6,7 @@ import noteObjectReducer from "./noteObject";
 import sideMenuReducer from "./sideMenu";
 import { loadData } from "./localStorage";
 import toggleThemeReducer from "./toggleTheme";
+import toggleModalReducer from "./toggleModal";
 
 const persistedData = loadData();
 
@@ -17,6 +18,7 @@ export default configureStore({
     sideMenu: sideMenuReducer,
     toggleTheme: toggleThemeReducer,
     expandSideMenu: expandSideMenuReducer,
+    toggleModal: toggleModalReducer,
   },
   preloadedState: persistedData,
 });

@@ -113,10 +113,6 @@
   .global-search-input-wrapper {
     height: 48px;
   }
-  .global-search-wrapper:hover {
-    background-color: #dadada;
-    cursor: pointer;
-  }
   .global-search-wrapper:hover .svg-icon {
     background-color: #dadada;
   }
