@@ -38,6 +38,7 @@ const GlobalSearch = () => {
   };
 
   return (
+    // some extra unnecessary conditional classes to make the search and clear svg icons a bit more consistent and remove their inherent bg, sorry couldn't find better ones
     <div className={`global-search-wrapper ${focus ? "input-focus-bg" : ""}`}>
       <button className="icon-wrapper" onClick={handleClick}>
         <img

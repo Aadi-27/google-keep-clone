@@ -44,6 +44,7 @@ const ModalBox = ({ noteObject, onClose }) => {
     dispatch(editDesc(e.target.value));
   };
   const handleClick = (e) => {
+    // could have used refs too but avoided extra code
     if (
       e.target.className === "modal-container" ||
       e.target.className === "create-note-submit-btn"
