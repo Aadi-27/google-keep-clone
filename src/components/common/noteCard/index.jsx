@@ -1,4 +1,3 @@
-import React, { useState, useRef } from "react";
 import "./index.css";
 import PinIcon from "../../../assets/pin-outline.svg";
 import UnPinIcon from "../../../assets/pin-fill.svg";
@@ -13,26 +12,20 @@ import DeleteIconWhite from "../../../assets/delete-white.svg";
 import { pinNotes, deleteNotes, archiveNotes } from "../../../redux/notes";
 import { isDarkModeOn } from "../../../redux/toggleTheme";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "../modalBox";
 
-const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const pinRef = useRef(null);
-  const archiveRef = useRef(null);
-  const deleteRef = useRef(null);
+const NoteCard = ({
+  id,
+  title,
+  desc,
+  isArchived,
+  isPinned,
+  handleOpenedNoteId,
+}) => {
   const dispatch = useDispatch();
   const isDarkMode = useSelector(isDarkModeOn);
 
   const handleToggleModal = (e) => {
-    e.preventDefault();
-    if (
-      pinRef.current.contains(e.target) ||
-      archiveRef.current.contains(e.target) ||
-      deleteRef.current.contains(e.target)
-    ) {
-      return;
-    }
-    setIsModalOpen(!isModalOpen);
+    handleOpenedNoteId(id, e);
   };
 
   const togglePin = () => {
@@ -54,11 +47,7 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
         <div className="note-card-header">
           <h3>{title}</h3>
           {isDarkMode ? (
-            <div
-              className="pin-unpin-card hide"
-              onClick={togglePin}
-              ref={pinRef}
-            >
+            <div className="pin-unpin-card hide" onClick={togglePin}>
               {isPinned ? (
                 <img
                   src={UnPinIconWhite}
@@ -70,11 +59,7 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
               )}
             </div>
           ) : (
-            <div
-              className="pin-unpin-card hide"
-              onClick={togglePin}
-              ref={pinRef}
-            >
+            <div className="pin-unpin-card hide" onClick={togglePin}>
               {isPinned ? (
                 <img src={UnPinIcon} className="pin-icon" alt="unpin-note" />
               ) : (
@@ -91,7 +76,6 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
             <div
               className="note-card-footer-archive hide"
               onClick={toggleArchive}
-              ref={archiveRef}
             >
               {isArchived ? (
                 <img
@@ -109,7 +93,6 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
             </div>
             <div
               className="note-card-footer-delete hide"
-              ref={deleteRef}
               onClick={handleDelete}
             >
               <img
@@ -124,7 +107,6 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
             <div
               className="note-card-footer-archive hide"
               onClick={toggleArchive}
-              ref={archiveRef}
             >
               {isArchived ? (
                 <img
@@ -142,7 +124,6 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
             </div>
             <div
               className="note-card-footer-delete hide"
-              ref={deleteRef}
               onClick={handleDelete}
             >
               <img
@@ -154,12 +135,6 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
           </>
         )}
       </div>
-      {isModalOpen && (
-        <Modal
-          noteObject={{ id, title, desc, isArchived, isPinned }}
-          onClose={handleToggleModal}
-        />
-      )}
     </>
   );
 };

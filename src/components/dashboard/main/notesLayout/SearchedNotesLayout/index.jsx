@@ -1,8 +1,18 @@
 import { searchValue } from "../../../../../redux/globalSearch";
-import { useSelector } from "react-redux";
+import {
+  handleModal,
+  handleModalId,
+  modal,
+  modalId,
+} from "../../../../../redux/toggleModal";
+import { useSelector, useDispatch } from "react-redux";
 import NoteCard from "../../../../common/noteCard";
+import Modal from "../../../../common/modalBox";
 
 const SearchedResultsLayout = ({ allNotes }) => {
+  const dispatch = useDispatch();
+  const isModalOpen = useSelector(modal);
+  const openedNoteId = useSelector(modalId);
   const inputValue = useSelector(searchValue);
 
   const searchedNotes = allNotes.filter((note) => {
@@ -14,6 +24,24 @@ const SearchedResultsLayout = ({ allNotes }) => {
     }
     return false;
   });
+  const handleOpenedNoteId = (id, e) => {
+    if (
+      e.target.className === "pin-unpin-card hide" ||
+      e.target.className === "pin-icon" ||
+      e.target.className === "note-card-footer-archive hide" ||
+      e.target.className === "archive-note-icon" ||
+      e.target.className === "note-card-footer-delete hide" ||
+      e.target.className === "delete-note-icon"
+    ) {
+      return;
+    }
+    dispatch(handleModalId(id));
+    dispatch(handleModal());
+  };
+  const handleModalClose = () => {
+    dispatch(handleModal());
+  };
+
   return (
     <div className="notes-container">
       <div className="note-cards-wrapper">
@@ -26,9 +54,13 @@ const SearchedResultsLayout = ({ allNotes }) => {
               desc={note.desc}
               isArchived={note.isArchived}
               isPinned={note.isPinned}
+              handleOpenedNoteId={handleOpenedNoteId}
             />
           );
         })}
+        {isModalOpen && (
+          <Modal noteId={openedNoteId} onClose={handleModalClose} />
+        )}
       </div>
     </div>
   );

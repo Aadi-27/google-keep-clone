@@ -13,6 +13,7 @@ store.subscribe(() => {
     globalSearch: store.getState().globalSearch,
     sideMenu: store.getState().sideMenu,
     toggleTheme: store.getState().toggleTheme,
+    toggleModal: store.getState().toggleModal,
   });
 });
 

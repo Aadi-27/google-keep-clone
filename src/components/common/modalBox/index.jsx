@@ -18,24 +18,26 @@ import {
   toggleIsArchived,
   toggleIsPinned,
 } from "../../../redux/noteObject";
+import { notesArray } from "../../../redux/notes";
 import { editNotes } from "../../../redux/notes";
 import { isDarkModeOn } from "../../../redux/toggleTheme";
 import { useSelector, useDispatch } from "react-redux";
 
-const ModalBox = ({ noteObject, onClose }) => {
+const ModalBox = ({ noteId, onClose }) => {
   const dispatch = useDispatch();
   const note = useSelector(noteObj);
   const isDarkMode = useSelector(isDarkModeOn);
+  const allNotes = useSelector(notesArray);
   const { title, desc, isPinned, isArchived } = note;
 
   useEffect(() => {
-    const openedNote = { ...noteObject };
+    const openedNote = allNotes.find((note) => note.id === noteId);
     dispatch(editNote(openedNote));
 
     return () => {
       dispatch(emptyNote());
     };
-  }, [noteObject, dispatch]);
+  }, [dispatch, noteId, allNotes]);
 
   const handleInputChange = (e) => {
     dispatch(editTitle(e.target.value));
@@ -44,14 +46,13 @@ const ModalBox = ({ noteObject, onClose }) => {
     dispatch(editDesc(e.target.value));
   };
   const handleClick = (e) => {
-    // could have used refs too but avoided extra code
     if (
       e.target.className === "modal-container" ||
       e.target.className === "create-note-submit-btn"
     ) {
       const editedNoteObj = { ...note };
       dispatch(editNotes(editedNoteObj));
-      onClose(e);
+      onClose();
     }
   };
   const togglePin = () => {
