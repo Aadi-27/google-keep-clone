@@ -12,7 +12,6 @@ store.subscribe(() => {
     noteObject: store.getState().noteObject,
     globalSearch: store.getState().globalSearch,
     sideMenu: store.getState().sideMenu,
-    toggleModal: store.getState().toggleModal,
     toggleTheme: store.getState().toggleTheme,
   });
 });

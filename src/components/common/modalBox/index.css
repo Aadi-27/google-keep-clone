@@ -40,3 +40,15 @@
   transition: box-shadow 0.218s cubic-bezier(0.25, 0.8, 0.25, 1),
     transform 0.218s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
+/* responsive styles */
+@media (max-width: 760px) {
+  .edit-note-wrapper {
+    width: 500px;
+  }
+}
+@media (max-width: 420px) {
+  .edit-note-wrapper {
+    width: 330px;
+  }
+}

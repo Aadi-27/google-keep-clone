@@ -31,3 +31,6 @@ body {
 .dark-mode-text {
   color: rgba(255, 255, 255, 0.87) !important;
 }
+.dark-mode-search {
+  background-color: rgba(241, 243, 244, 0.24) !important;
+}

@@ -108,6 +108,7 @@
     padding: 16px;
     border-radius: 50%;
     background-color: #fff;
+    z-index: 99999;
   }
   .global-search-input-wrapper {
     height: 48px;

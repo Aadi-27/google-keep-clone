@@ -29,15 +29,13 @@ const ModalBox = ({ noteObject, onClose }) => {
   const { title, desc, isPinned, isArchived } = note;
 
   useEffect(() => {
-    // const openedNote = { ...noteObject };
-    // dispatch(editNote(openedNote));
-    // console.log(`aaa: ${JSON.stringify(openedNote)}`);
-    console.log(`yo`);
+    const openedNote = { ...noteObject };
+    dispatch(editNote(openedNote));
 
-    // return () => {
-    //   dispatch(emptyNote());
-    // };
-  }, []);
+    return () => {
+      dispatch(emptyNote());
+    };
+  }, [noteObject, dispatch]);
 
   const handleInputChange = (e) => {
     dispatch(editTitle(e.target.value));
@@ -51,17 +49,20 @@ const ModalBox = ({ noteObject, onClose }) => {
       e.target.className === "create-note-submit-btn"
     ) {
       const editedNoteObj = { ...note };
-      // dispatch(emptyNote());
       dispatch(editNotes(editedNoteObj));
       onClose(e);
-      console.log(`aadi: ${JSON.stringify(note)}`);
     }
   };
-  const togglePin = (e) => {
+  const togglePin = () => {
+    if (isArchived && !isPinned) {
+      dispatch(toggleIsArchived());
+    }
     dispatch(toggleIsPinned());
   };
-  const toggleArchive = (e) => {
-    e.preventDefault();
+  const toggleArchive = () => {
+    if (isPinned && !isArchived) {
+      dispatch(toggleIsPinned());
+    }
     dispatch(toggleIsArchived());
   };
 

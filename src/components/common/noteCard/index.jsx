@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./index.css";
 import PinIcon from "../../../assets/pin-outline.svg";
 import UnPinIcon from "../../../assets/pin-fill.svg";
@@ -11,17 +11,16 @@ import ArchiveIconWhite from "../../../assets/archive-outline-white.svg";
 import UnArchiveIconWhite from "../../../assets/archive-fill-white.svg";
 import DeleteIconWhite from "../../../assets/delete-white.svg";
 import { pinNotes, deleteNotes, archiveNotes } from "../../../redux/notes";
-import { handleModal, modalIsOpen } from "../../../redux/toggleModal";
 import { isDarkModeOn } from "../../../redux/toggleTheme";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../modalBox";
 
 const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const pinRef = useRef(null);
   const archiveRef = useRef(null);
   const deleteRef = useRef(null);
   const dispatch = useDispatch();
-  const isModalOpen = useSelector(modalIsOpen);
   const isDarkMode = useSelector(isDarkModeOn);
 
   const handleToggleModal = (e) => {
@@ -33,7 +32,7 @@ const NoteCard = ({ id, title, desc, isArchived, isPinned }) => {
     ) {
       return;
     }
-    dispatch(handleModal());
+    setIsModalOpen(!isModalOpen);
   };
 
   const togglePin = () => {

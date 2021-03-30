@@ -12,10 +12,21 @@ export const notesSlice = createSlice({
       }
     },
     editNotes: (state, action) => {
-      const index = state.notesArray.indexOf(
-        (note) => note.id === action.payload.id
-      );
-      state.notesArray.splice(index, 1, action.payload);
+      // const index = state.notesArray.findIndex(
+      //   (note) => note.id === action.payload.id
+      // );
+      // state.notesArray.splice(index, 1, action.payload);
+      state.notesArray.map((note) => {
+        if (note.id === action.payload.id) {
+          return (
+            (note.isArchived = action.payload.isArchived),
+            (note.isPinned = action.payload.isPinned),
+            (note.title = action.payload.title),
+            (note.desc = action.payload.desc)
+          );
+        }
+        return note;
+      });
     },
     deleteNotes: (state, action) => {
       state.notesArray = state.notesArray.filter(

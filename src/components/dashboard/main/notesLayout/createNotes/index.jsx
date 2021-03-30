@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { v4 } from "node-uuid";
 import PinIcon from "../../../../../assets/pin-outline.svg";
 import UnPinIcon from "../../../../../assets/pin-fill.svg";
 import ArchiveIcon from "../../../../../assets/archive-outline-icon.svg";
+import UnArchiveIcon from "../../../../../assets/archive-fill-icon.svg";
+import PinIconWhite from "../../../../../assets/pin-outline-white.svg";
+import UnPinIconWhite from "../../../../../assets/pin-fill-white.svg";
+import ArchiveIconWhite from "../../../../../assets/archive-outline-white.svg";
+import UnArchiveIconWhite from "../../../../../assets/archive-fill-white.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   noteObj,
@@ -11,7 +17,6 @@ import {
   toggleIsPinned,
   emptyNote,
 } from "../../../../../redux/noteObject";
-import { modalIsOpen } from "../../../../../redux/toggleModal";
 import { addNotes } from "../../../../../redux/notes";
 import { isDarkModeOn } from "../../../../../redux/toggleTheme";
 
@@ -19,17 +24,7 @@ const CreateNotes = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const dispatch = useDispatch();
   const note = useSelector(noteObj);
-  const isModalOpen = useSelector(modalIsOpen);
   const isDarkMode = useSelector(isDarkModeOn);
-
-  useEffect(() => {
-    if (note.isArchived && !isModalOpen) {
-      const newNote = { ...note, id: Date.now(), isArchived: true };
-      dispatch(addNotes(newNote));
-      dispatch(emptyNote());
-      setIsExpanded(false);
-    }
-  }, [note, dispatch, isModalOpen]);
 
   const handleExpandInput = () => {
     setIsExpanded(true);
@@ -45,19 +40,25 @@ const CreateNotes = () => {
   };
 
   const handlePinNote = () => {
+    if (note.isArchived && !note.isPinned) {
+      dispatch(toggleIsArchived());
+    }
     dispatch(toggleIsPinned());
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    const newNote = { ...note, id: Date.now() };
+    const newNote = { ...note, id: v4() };
     dispatch(addNotes(newNote));
     dispatch(emptyNote());
     setIsExpanded(false);
   };
 
-  const handleArchiveNote = (e) => {
+  const handleArchiveNote = () => {
+    if (note.isPinned && !note.isArchived) {
+      dispatch(toggleIsPinned());
+    }
     dispatch(toggleIsArchived());
   };
 
@@ -81,13 +82,27 @@ const CreateNotes = () => {
               value={note.title}
               autoComplete="off"
             />
-            <div className="pin-icon-wrapper" onClick={handlePinNote}>
-              {note.isPinned ? (
-                <img className="pin-icon" src={UnPinIcon} alt="unpin-note" />
-              ) : (
-                <img className="pin-icon" src={PinIcon} alt="pin-note" />
-              )}
-            </div>
+            {isDarkMode ? (
+              <div className="pin-icon-wrapper" onClick={handlePinNote}>
+                {note.isPinned ? (
+                  <img
+                    className="pin-icon"
+                    src={UnPinIconWhite}
+                    alt="unpin-note"
+                  />
+                ) : (
+                  <img className="pin-icon" src={PinIconWhite} alt="pin-note" />
+                )}
+              </div>
+            ) : (
+              <div className="pin-icon-wrapper" onClick={handlePinNote}>
+                {note.isPinned ? (
+                  <img className="pin-icon" src={UnPinIcon} alt="unpin-note" />
+                ) : (
+                  <img className="pin-icon" src={PinIcon} alt="pin-note" />
+                )}
+              </div>
+            )}
           </div>
         ) : null}
         <textarea
@@ -104,13 +119,39 @@ const CreateNotes = () => {
         </textarea>
         {isExpanded && (
           <>
-            <div className="archive-icon-wrapper" onClick={handleArchiveNote}>
-              <img
-                className="archive-icon"
-                src={ArchiveIcon}
-                alt="archive-note"
-              />
-            </div>
+            {isDarkMode ? (
+              <div className="archive-icon-wrapper" onClick={handleArchiveNote}>
+                {note.isArchived ? (
+                  <img
+                    className="archive-icon"
+                    src={UnArchiveIconWhite}
+                    alt="archive-note"
+                  />
+                ) : (
+                  <img
+                    className="archive-icon"
+                    src={ArchiveIconWhite}
+                    alt="archive-note"
+                  />
+                )}
+              </div>
+            ) : (
+              <div className="archive-icon-wrapper" onClick={handleArchiveNote}>
+                {note.isArchived ? (
+                  <img
+                    className="archive-icon"
+                    src={UnArchiveIcon}
+                    alt="archive-note"
+                  />
+                ) : (
+                  <img
+                    className="archive-icon"
+                    src={ArchiveIcon}
+                    alt="archive-note"
+                  />
+                )}
+              </div>
+            )}
             <div
               className="create-note-submit-btn"
               role="button"
