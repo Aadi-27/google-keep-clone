@@ -5,8 +5,8 @@ import { searchValue } from "../../../../redux/globalSearch";
 import { selectedMenu } from "../../../../redux/sideMenu";
 import { notesArray } from "../../../../redux/notes";
 import CreateNotes from "./createNotes";
-import SavedNotesLayout from "./savedNotesLayout";
-import SearchedNotesLayout from "./searchedNotesLayout";
+import SavedNotesLayout from "./SavedNotesLayout";
+import SearchedNotesLayout from "./SearchedNotesLayout";
 import ArchivedNotesLayout from "./archivedNotesLayout";
 
 const NotesLayout = () => {
