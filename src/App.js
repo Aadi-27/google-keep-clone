@@ -1,7 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import store from "./redux/store";
-import { Provider } from "react-redux";
 import { useSelector } from "react-redux";
 import { isDarkModeOn } from "./redux/toggleTheme";
 import { saveData } from "./redux/localStorage";
@@ -25,13 +24,11 @@ function App() {
 
   return (
     <div className="App">
-      <Provider store={store}>
-        <Router>
-          <Header isDarkMode={isDarkMode} />
-          <SideMenu isDarkMode={isDarkMode} />
-          <Main isDarkMode={isDarkMode} />
-        </Router>
-      </Provider>
+      <Router>
+        <Header isDarkMode={isDarkMode} />
+        <SideMenu isDarkMode={isDarkMode} />
+        <Main isDarkMode={isDarkMode} />
+      </Router>
     </div>
   );
 }

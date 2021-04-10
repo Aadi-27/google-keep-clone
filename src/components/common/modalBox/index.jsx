@@ -114,6 +114,7 @@ const ModalBox = ({ noteId, onClose, isDarkMode }) => {
             name="description"
             value={desc}
             autoComplete="off"
+            autoFocus
           >
             {""}
           </textarea>
