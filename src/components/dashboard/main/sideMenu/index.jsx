@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./index.css";
 import SideMenuOption from "../../../common/sideMenuOption";
 import NotesIcon from "../../../../assets/lightbulb-icon.svg";
@@ -9,15 +10,13 @@ import {
   menuIsExpanded,
   shouldMenuContract,
 } from "../../../../redux/expandSideMenu";
-import { isDarkModeOn } from "../../../../redux/toggleTheme";
 import { useSelector } from "react-redux";
 
-const SideMenu = () => {
+const SideMenu = ({ isDarkMode }) => {
   const NOTES = "Notes";
   const ARCHIVES = "Archives";
   const isExpanded = useSelector(menuIsExpanded);
   const shouldContract = useSelector(shouldMenuContract);
-  const isDarkMode = useSelector(isDarkModeOn);
 
   return (
     <div
@@ -28,14 +27,18 @@ const SideMenu = () => {
       <ul
         className={`side-menu-options ${isDarkMode ? "dark-mode-border" : ""}`}
       >
-        <SideMenuOption
-          title={NOTES}
-          icon={isDarkMode ? NotesIconWhite : NotesIcon}
-        />
-        <SideMenuOption
-          title={ARCHIVES}
-          icon={isDarkMode ? ArchiveIconWhite : ArchiveIcon}
-        />
+        <Link to="/notes">
+          <SideMenuOption
+            title={NOTES}
+            icon={isDarkMode ? NotesIconWhite : NotesIcon}
+          />
+        </Link>
+        <Link to="/archives">
+          <SideMenuOption
+            title={ARCHIVES}
+            icon={isDarkMode ? ArchiveIconWhite : ArchiveIcon}
+          />
+        </Link>
       </ul>
     </div>
   );

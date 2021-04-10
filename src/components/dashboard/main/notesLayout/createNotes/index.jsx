@@ -18,13 +18,11 @@ import {
   emptyNote,
 } from "../../../../../redux/noteObject";
 import { addNotes } from "../../../../../redux/notes";
-import { isDarkModeOn } from "../../../../../redux/toggleTheme";
 
-const CreateNotes = () => {
+const CreateNotes = ({ isDarkMode }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const dispatch = useDispatch();
   const note = useSelector(noteObj);
-  const isDarkMode = useSelector(isDarkModeOn);
 
   const handleExpandInput = () => {
     setIsExpanded(true);

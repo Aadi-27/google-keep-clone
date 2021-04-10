@@ -1,10 +1,9 @@
 import "./index.css";
-import { handleDarkMode, isDarkModeOn } from "../../../../redux/toggleTheme";
-import { useDispatch, useSelector } from "react-redux";
+import { handleDarkMode } from "../../../../redux/toggleTheme";
+import { useDispatch } from "react-redux";
 
-const ToggleTheme = () => {
+const ToggleTheme = ({ isDarkMode }) => {
   const dispatch = useDispatch();
-  const isDarkMode = useSelector(isDarkModeOn);
 
   const handleToggle = (e) => {
     e.preventDefault();

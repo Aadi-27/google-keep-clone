@@ -2,14 +2,12 @@ import {
   toggleSideMenu,
   handleShouldContract,
 } from "../../../../redux/expandSideMenu";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import HamburgerIcon from "../../../../assets/hamburger-round-icon.svg";
 import HamburgerIconWhite from "../../../../assets/hamburger-white.svg";
-import { isDarkModeOn } from "../../../../redux/toggleTheme";
 
-function HamburgerMenu() {
+function HamburgerMenu({ isDarkMode }) {
   const dispatch = useDispatch();
-  const isDarkMode = useSelector(isDarkModeOn);
 
   const expandMenu = () => {
     dispatch(toggleSideMenu());
