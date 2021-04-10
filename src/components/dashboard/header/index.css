@@ -125,4 +125,11 @@
     left: 15px;
     border-radius: 8px;
   }
+
+  .header-items-wrapper a {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 94%;
+  }
 }

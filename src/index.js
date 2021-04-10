@@ -1,21 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
-import { saveData } from "./redux/localStorage";
 import { Provider } from "react-redux";
-
-store.subscribe(() => {
-  saveData({
-    notesArray: store.getState().notesArray,
-    noteObject: store.getState().noteObject,
-    globalSearch: store.getState().globalSearch,
-    sideMenu: store.getState().sideMenu,
-    toggleTheme: store.getState().toggleTheme,
-    toggleModal: store.getState().toggleModal,
-  });
-});
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,24 +1,26 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   searchValue,
   editValue,
   emptyValue,
+  handleFocus,
+  inputFocus,
 } from "../../../../redux/globalSearch";
 import { useSelector, useDispatch } from "react-redux";
 import SearchIcon from "../../../../assets/search-icon.svg";
 import ClearIcon from "../../../../assets/close-icon.svg";
 
 const GlobalSearch = () => {
-  const [focus, setFocus] = useState(false);
   const searchInput = useRef(null);
   const dispatch = useDispatch();
   const inputValue = useSelector(searchValue);
+  const isSearchActive = useSelector(inputFocus);
 
   useEffect(() => {
-    if (searchInput.current && focus) {
+    if (searchInput.current && isSearchActive) {
       searchInput.current.focus();
     }
-  }, [focus]);
+  }, [isSearchActive]);
 
   const handleOnChange = (e) => {
     dispatch(editValue(e.target.value));
@@ -29,20 +31,23 @@ const GlobalSearch = () => {
   };
 
   const handleClick = () => {
-    setFocus(true);
+    dispatch(handleFocus(true));
   };
 
   const handleBlur = () => {
-    setFocus(false);
-    dispatch(emptyValue());
+    dispatch(handleFocus(false));
   };
 
   return (
     // some extra unnecessary conditional classes to make the search and clear svg icons a bit more consistent and remove their inherent bg, sorry couldn't find better ones
-    <div className={`global-search-wrapper ${focus ? "input-focus-bg" : ""}`}>
+    <div
+      className={`global-search-wrapper ${
+        isSearchActive ? "input-focus-bg" : ""
+      }`}
+    >
       <button className="icon-wrapper" onClick={handleClick}>
         <img
-          className={`svg-icon ${focus ? "icon-focus-bg" : ""}`}
+          className={`svg-icon ${isSearchActive ? "icon-focus-bg" : ""}`}
           src={SearchIcon}
           alt="search-notes"
         />
@@ -63,7 +68,9 @@ const GlobalSearch = () => {
       {!!inputValue.length && (
         <button className="icon-wrapper" onClick={handleClear}>
           <img
-            className={`svg-icon clear ${focus ? "icon-focus-bg" : ""}`}
+            className={`svg-icon clear ${
+              isSearchActive ? "icon-focus-bg" : ""
+            }`}
             src={ClearIcon}
             alt="clear-searched-notes"
           />

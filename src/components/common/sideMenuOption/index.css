@@ -30,4 +30,16 @@
 }
 .side-menu-title {
   margin-bottom: 3px;
+  text-decoration: none;
+}
+
+.active-exp-bg {
+  border-radius: 0 42px 42px 0;
+  background-color: #feefc3;
+  outline: none;
+}
+
+.active-con-bg {
+  background-color: #feefc3;
+  outline: none;
 }

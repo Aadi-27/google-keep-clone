@@ -20,13 +20,11 @@ import {
 } from "../../../redux/noteObject";
 import { notesArray } from "../../../redux/notes";
 import { editNotes } from "../../../redux/notes";
-import { isDarkModeOn } from "../../../redux/toggleTheme";
 import { useSelector, useDispatch } from "react-redux";
 
-const ModalBox = ({ noteId, onClose }) => {
+const ModalBox = ({ noteId, onClose, isDarkMode }) => {
   const dispatch = useDispatch();
   const note = useSelector(noteObj);
-  const isDarkMode = useSelector(isDarkModeOn);
   const allNotes = useSelector(notesArray);
   const { title, desc, isPinned, isArchived } = note;
 
@@ -116,6 +114,7 @@ const ModalBox = ({ noteId, onClose }) => {
             name="description"
             value={desc}
             autoComplete="off"
+            autoFocus
           >
             {""}
           </textarea>

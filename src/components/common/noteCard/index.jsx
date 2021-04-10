@@ -10,8 +10,7 @@ import ArchiveIconWhite from "../../../assets/archive-outline-white.svg";
 import UnArchiveIconWhite from "../../../assets/archive-fill-white.svg";
 import DeleteIconWhite from "../../../assets/delete-white.svg";
 import { pinNotes, deleteNotes, archiveNotes } from "../../../redux/notes";
-import { isDarkModeOn } from "../../../redux/toggleTheme";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const NoteCard = ({
   id,
@@ -20,9 +19,9 @@ const NoteCard = ({
   isArchived,
   isPinned,
   handleOpenedNoteId,
+  isDarkMode,
 }) => {
   const dispatch = useDispatch();
-  const isDarkMode = useSelector(isDarkModeOn);
 
   const handleToggleModal = (e) => {
     handleOpenedNoteId(id, e);

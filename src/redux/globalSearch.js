@@ -4,6 +4,7 @@ export const globalSearchSlice = createSlice({
   name: "globalSearch",
   initialState: {
     inputValue: "",
+    inputFocus: false,
   },
   reducers: {
     editValue: (state, action) => {
@@ -12,11 +13,15 @@ export const globalSearchSlice = createSlice({
     emptyValue: (state) => {
       state.inputValue = "";
     },
+    handleFocus: (state, action) => {
+      state.inputFocus = action.payload;
+    },
   },
 });
 
-export const { editValue, emptyValue } = globalSearchSlice.actions;
+export const { editValue, emptyValue, handleFocus } = globalSearchSlice.actions;
 
 export const searchValue = (state) => state.globalSearch.inputValue;
+export const inputFocus = (state) => state.globalSearch.inputFocus;
 
 export default globalSearchSlice.reducer;
