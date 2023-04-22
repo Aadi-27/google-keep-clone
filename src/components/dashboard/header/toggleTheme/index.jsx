@@ -12,9 +12,9 @@ const ToggleTheme = ({ isDarkMode }) => {
 
   return (
     <div className="toggle-theme" onClick={handleToggle}>
-      <label class="switch">
-        <input type="checkbox" checked={isDarkMode} />
-        <span class="slider round"></span>
+      <label className="switch">
+        <input type="checkbox" checked={isDarkMode} readOnly />
+        <span className="slider round"></span>
       </label>
     </div>
   );

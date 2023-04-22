@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { isDarkModeOn } from "./redux/toggleTheme";
 import { saveData } from "./redux/localStorage";
 import Header from "./components/dashboard/header";
-import Main from "./components/dashboard/main/";
+import Main from "./components/dashboard/main";
 import SideMenu from "./components/dashboard/main/sideMenu";
 
 function App() {
