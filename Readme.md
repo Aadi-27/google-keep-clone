@@ -58,6 +58,6 @@ npm run dev
 
 ## Technologies Used
 
-- [React]("https://react.dev")
-- [React Router Dom]("https://www.npmjs.com/package/react-router-dom")
-- [Redux Toolkit]("https://redux-toolkit.js.org")
+- [React](https://react.dev)
+- [React Router Dom](https://www.npmjs.com/package/react-router-dom)
+- [Redux Toolkit](https://redux-toolkit.js.org)
