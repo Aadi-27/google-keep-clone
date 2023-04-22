@@ -5,18 +5,22 @@ Google Keep Clone is a simple note-taking application built with React and Redux
 ## Table of Contents
 
 - [Demo](#demo)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
 
 ## Demo
 
-A demo of the project can be found [here]("https://google-keep-clone-mauve.vercel.app/").
+A demo of the project can be found [here](https://google-keep-clone-mauve.vercel.app).
 
 ## Features
 
-Create, read, update, and delete notes
-Notes can be color-coded for easy categorization
-Search functionality to find specific notes
-Ability to archive and unarchive notes
-Dark mode
+- Create, read, update, and delete notes
+- Notes can be color-coded for easy categorization
+- Search functionality to find specific notes
+- Ability to archive and unarchive notes
+- Dark mode
 
 ## Installation
 
